@@ -4,10 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
-    private final By loginInput = By.xpath("//*[@placeholder='Username']");
+    private final By loginInput = By.xpath(DATA_TEST_PATTERN.formatted("username"));
     private final By passwordInput = By.xpath("//input[@placeholder='Password']");
     private final By submitButton = By.cssSelector("#login-button");
-    private final By error = By.xpath("//h3[@data-test='error']");
+    private final By error = By.xpath(DATA_TEST_PATTERN.formatted("error"));
 
     public LoginPage(WebDriver driver) {
         super(driver);
