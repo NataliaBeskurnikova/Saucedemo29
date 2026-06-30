@@ -16,5 +16,7 @@ public class ProductsTest extends BaseTest {
         productsPage.addGoodsToCart(0);
         Thread.sleep(5000);
         assertEquals(productsPage.checkCounterValue(), "rgba(226, 35, 26, 1)");
+        assertEquals(productsPage.isCartCounterDisplayed(), true);
+        assertEquals(productsPage.getCounterValue(), "2");
     }
 }

@@ -9,7 +9,8 @@ public class ProductsPage extends BasePage {
                     "//child::button[text()='Add to cart']";
     private final By title = By.xpath("//*[@class='title']");
     private final By counter = By.xpath(DATA_TEST_PATTERN.formatted("shopping-cart-badge"));
-    private final By addToCart = By.xpath(DATA_TEST_PATTERN.formatted("shopping-cart-badge"));
+    private final By cartBadgeLocator = By.xpath(DATA_TEST_PATTERN.formatted("shopping-cart-link"));
+    private final By cartCounter = By.xpath(DATA_TEST_PATTERN.formatted("shopping-cart-badge"));
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -20,7 +21,7 @@ public class ProductsPage extends BasePage {
     }
 
     public void addGoodsToCart(String goodsName) {
-        By addToCart = By.xpath(String.format(ADD_TO_CART, goodsName));
+        By addToCart = By.xpath(ADD_TO_CART.formatted(goodsName));
         driver.findElement(addToCart).click();
     }
 
@@ -30,5 +31,13 @@ public class ProductsPage extends BasePage {
 
     public String checkCounterValue() {
         return driver.findElement(counter).getCssValue("background-color");
+    }
+
+    public boolean isCartCounterDisplayed() {
+        return driver.findElement(cartBadgeLocator).isDisplayed();
+    }
+
+    public String getCounterValue() {
+        return driver.findElement(cartCounter).getText();
     }
 }
