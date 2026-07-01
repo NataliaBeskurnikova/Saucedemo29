@@ -6,7 +6,7 @@ import static org.testng.Assert.assertEquals;
 
 public class ProductsTest extends BaseTest {
     @Test
-    public void checkGoodsAdded() throws InterruptedException {
+    public void checkGoodsAdded() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
 
@@ -14,7 +14,7 @@ public class ProductsTest extends BaseTest {
 
         productsPage.addGoodsToCart("Sauce Labs Bolt T-Shirt");
         productsPage.addGoodsToCart(0);
-        Thread.sleep(5000);
+
         assertEquals(productsPage.checkCounterValue(), "rgba(226, 35, 26, 1)");
         assertEquals(productsPage.isCartCounterDisplayed(), true);
         assertEquals(productsPage.getCounterValue(), "2");
