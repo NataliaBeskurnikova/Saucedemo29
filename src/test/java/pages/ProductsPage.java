@@ -45,5 +45,7 @@ public class ProductsPage extends BasePage {
         return driver.findElement(counter).getCssValue("background-color");
     }
 
-
+    public void switchToBasket() {
+        driver.findElement(counter).click();
+    }
 }
