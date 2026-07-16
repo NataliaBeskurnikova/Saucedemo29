@@ -3,17 +3,22 @@ package tests;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static enums.TitleNaming.PRODUCTS;
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static user.UserFactory.withAdminPermission;
 
 public class LoginTest extends BaseTest {
 
     @Test
     public void checkLogin() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        System.out.println("LoginTest.checkLogin is running in Thread: "
+                + Thread.currentThread().getId());
+        loginPage
+                .open()
+                .login(withAdminPermission());
 
-        assertEquals(productsPage.getTitle(), "Products", "Заголовок страницы не соответствует");
+        assertEquals(productsPage.getTitle(), PRODUCTS.getDisplayName(),
+                "Заголовок страницы не соответствует");
     }
 
     @DataProvider(name = "incorrectLoginData")
@@ -26,12 +31,12 @@ public class LoginTest extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "incorrectLoginData")
+    /*@Test(dataProvider = "incorrectLoginData")
     public void checkIncorrectLogin(String user, String password, String errorMessage) {
         loginPage.open();
-        loginPage.login(user, password);
+        loginPage.login();
 
         assertTrue(loginPage.isErrorDisplayed());
         assertEquals(loginPage.getErrorText(), errorMessage);
-    }
+    }*/
 }

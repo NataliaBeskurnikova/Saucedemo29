@@ -4,9 +4,11 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static enums.TitleNaming.PRODUCTS;
 import static org.testng.Assert.assertEquals;
 import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
+import static user.UserFactory.withAdminPermission;
 
 public class ProductsTest extends BaseTest {
 
@@ -19,9 +21,9 @@ public class ProductsTest extends BaseTest {
                         "Test.allTheThings() T-Shirt (Red)");
 
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
 
-        assertEquals(productsPage.getTitle(), "Products", "Заголовок страницы не соответствует");
+        assertEquals(productsPage.getTitle(), PRODUCTS, "Заголовок страницы не соответствует");
 
         for (String goods : goodsList) {
             productsPage.addGoodsToCart(goods);
@@ -45,7 +47,7 @@ public class ProductsTest extends BaseTest {
         );
 
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
 
         assertFalse(basketPage.isPageLoaded());
         assertEquals(productsPage.getTitle(), "Products", "Заголовок страницы не соответствует");
