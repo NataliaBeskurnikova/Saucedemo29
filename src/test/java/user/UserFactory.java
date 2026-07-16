@@ -17,4 +17,14 @@ public class UserFactory {
         return new User(PropertyReader.getProperty(""),
                 PropertyReader.getProperty("saucedemo.password"));
     }
+
+    public static User withEmptyPasswordPermission() {
+        return new User(PropertyReader.getProperty("saucedemo.user"),
+                PropertyReader.getProperty(""));
+    }
+
+    public static User withInvalidLoginPermission() {
+        return new User(PropertyReader.getProperty("saucedemo.invalid_user"),
+                PropertyReader.getProperty("saucedemo.invalid_password"));
+    }
 }

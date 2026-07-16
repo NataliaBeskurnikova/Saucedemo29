@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 import static enums.TitleNaming.PRODUCTS;
 import static org.testng.Assert.assertEquals;
-import static user.UserFactory.withAdminPermission;
+import static user.UserFactory.*;
 
 public class LoginTest extends BaseTest {
 
@@ -24,10 +24,10 @@ public class LoginTest extends BaseTest {
     @DataProvider(name = "incorrectLoginData")
     public Object[][] loginData() {
         return new Object[][]{
-                {"", "secret_sauce", "Epic sadface: Username is required"},
-                {"standard_user", "", "Epic sadface: Password is required"},
-                {"locked_out_user", "secret_sauce", "Epic sadface: Sorry, this user has been locked out."},
-                {"Standard_user", "secret_sauce", "Epic sadface: Username and password do not match any user in this service"}
+                {withEmptyLoginPermission(), "Epic sadface: Username is required"},
+                {withEmptyPasswordPermission(), "Epic sadface: Password is required"},
+                {withLockedPermission(), "Epic sadface: Sorry, this user has been locked out."},
+                {withInvalidLoginPermission(), "Epic sadface: Username and password do not match any user in this service"}
         };
     }
 
