@@ -22,14 +22,12 @@ public class ProductsTest extends BaseTest {
         loginPage.login("standard_user", "secret_sauce");
 
         assertEquals(productsPage.getTitle(), "Products", "Заголовок страницы не соответствует");
-        //productsPage.addGoodsToCart(4);
 
         for (String goods : goodsList) {
             productsPage.addGoodsToCart(goods);
         }
 
         assertEquals(productsPage.checkCounterColor(), "rgba(226, 35, 26, 1)");
-        // assertEquals(productsPage.checkCounterValue(), "3");
         assertEquals(productsPage.getCounterValue(), "3");
         assertEquals(productsPage.isCartCounterDisplayed(), true);
 
@@ -51,7 +49,6 @@ public class ProductsTest extends BaseTest {
 
         assertFalse(basketPage.isPageLoaded());
         assertEquals(productsPage.getTitle(), "Products", "Заголовок страницы не соответствует");
-        // productsPage.addGoodsToCart(4);
 
         for (String goods2 : goodsList2) {
             productsPage.addGoodsToCart(goods2);
