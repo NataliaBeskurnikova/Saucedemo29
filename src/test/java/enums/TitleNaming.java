@@ -5,7 +5,6 @@ public enum TitleNaming {
     CARTS("Your Cart"),
     CHECKOUT("Checkout: Your Information");
 
-
     private final String displayName;
 
     TitleNaming(String displayName) {

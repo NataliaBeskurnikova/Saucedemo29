@@ -13,7 +13,6 @@ import pages.BasketPage;
 import pages.LoginPage;
 import pages.ProductsPage;
 
-
 import java.time.Duration;
 
 public class BaseTest {

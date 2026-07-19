@@ -5,8 +5,8 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 import static enums.TitleNaming.PRODUCTS;
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 import static user.UserFactory.withAdminPermission;
 
 public class BasketTest extends BaseTest {

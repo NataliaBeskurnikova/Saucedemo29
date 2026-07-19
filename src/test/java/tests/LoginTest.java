@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 import static enums.TitleNaming.PRODUCTS;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 import static user.UserFactory.*;
 
 public class LoginTest extends BaseTest {
@@ -31,12 +32,12 @@ public class LoginTest extends BaseTest {
         };
     }
 
-    /*@Test(dataProvider = "incorrectLoginData")
+    @Test(dataProvider = "incorrectLoginData")
     public void checkIncorrectLogin(String user, String password, String errorMessage) {
         loginPage.open();
         loginPage.login();
 
         assertTrue(loginPage.isErrorDisplayed());
         assertEquals(loginPage.getErrorText(), errorMessage);
-    }*/
+    }
 }
