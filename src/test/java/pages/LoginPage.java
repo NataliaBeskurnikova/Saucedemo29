@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import user.User;
@@ -14,6 +15,7 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
+    @Step("Открываем страницу авторизации")
     public LoginPage open() {
         driver.get(BASE_URL);
 
@@ -26,6 +28,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step("Логинимся под кредами пользователя: = {user.name}, пароль = ******")
     public LoginPage login(User user) {
         fillInLoginField(user.getName());
         fillInPasswordField(user.getPassword());
@@ -34,19 +37,27 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step("Заполняем поле ввода логина")
     public void fillInLoginField(String login) {
         driver.findElement(loginInput).sendKeys(login);
     }
 
+    @Step("Заполняем поле ввода пароля")
     public void fillInPasswordField(String password) {
         driver.findElement(passwordInput).sendKeys(password);
     }
 
+    @Step("Проверяем отображение сообщения об ошибке")
     public boolean isErrorDisplayed() {
         return driver.findElement(error).isDisplayed();
     }
 
+    @Step("Получаем текст сообщения об ошибке")
     public String getErrorText() {
         return driver.findElement(error).getText();
+    }
+
+    public String checkButtonWidth() {
+        return driver.findElement(submitButton).getCssValue("width");
     }
 }

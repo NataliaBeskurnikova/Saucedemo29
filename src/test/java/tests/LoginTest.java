@@ -1,16 +1,25 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import user.User;
 
 import static enums.TitleNaming.PRODUCTS;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static user.UserFactory.*;
 
+@Epic("Авторизация и доступ к системе")
+@Feature("Авторизация пользователя")
+@Owner("Beskurnikova Natalia bskurnikova@yandex.ru")
 public class LoginTest extends BaseTest {
 
-    @Test
+    @Story("Проверка сценариев входа в систему")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("Saucedemo29")
+    @Issue("AiAgentBBS")
+    @Test(description = "Проверка корректной авторизации", priority = 1)
     public void checkLogin() {
         System.out.println("LoginTest.checkLogin is running in Thread: "
                 + Thread.currentThread().getId());
@@ -32,10 +41,14 @@ public class LoginTest extends BaseTest {
         };
     }
 
-    @Test(dataProvider = "incorrectLoginData")
-    public void checkIncorrectLogin(String user, String password, String errorMessage) {
+    @Story("Обработка ошибок при некорректной авторизации")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink("Saucedemo29")
+    @Issue("AiAgentBBS")
+    @Test(dataProvider = "incorrectLoginData", priority = 2, enabled = true)
+    public void checkIncorrectLogin(User user, String errorMessage) {
         loginPage.open();
-        loginPage.login();
+        loginPage.login(user);
 
         assertTrue(loginPage.isErrorDisplayed());
         assertEquals(loginPage.getErrorText(), errorMessage);
