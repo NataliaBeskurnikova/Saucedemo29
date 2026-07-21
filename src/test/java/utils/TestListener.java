@@ -57,7 +57,7 @@ public class TestListener implements ITestListener {
         return TimeUnit.MILLISECONDS.toSeconds(iTestResult.getEndMillis() - iTestResult.getStartMillis());
     }
 
-    public class AllureUtils {
+    public static class AllureUtils {
         @Attachment(value = "screenshot", type = "image/png")
         public static byte[] takeScreenshot(WebDriver driver) {
             return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
